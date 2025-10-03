@@ -1,0 +1,171 @@
+/* Reset et polices */
+body {
+  margin: 0;
+  font-family: Arial, sans-serif;
+  line-height: 1.6;
+}
+
+/* 1. Header */
+header {
+  background: linear-gradient(135deg, #0ea5e9, #8b5cf6);
+  color: #fff;
+  padding: 1rem 2rem;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+header ul {
+  list-style: none;
+  display: flex;
+  gap: 1rem;
+  margin: 0;
+  padding: 0;
+  flex-wrap: wrap;
+}
+
+header a {
+  color: #fff;
+  text-decoration: none;
+}
+
+/* 2. Hero */
+.hero {
+  background: linear-gradient(135deg, #0ea5e9, #8b5cf6);
+  color: #fff;
+  text-align: center;
+  padding: 100px 20px;
+}
+
+.hero .btn {
+  display: inline-block;
+  margin-top: 1rem;
+  padding: 12px 24px;
+  background: #111;
+  color: #fff;
+  border-radius: 8px;
+  text-decoration: none;
+  white-space: nowrap;
+}
+
+/* 3. Services */
+.services {
+  padding: 40px 20px;
+  text-align: center;
+}
+
+.cards {
+  display: flex;
+  gap: 1rem;
+  justify-content: center;
+  margin-top: 1rem;
+  flex-wrap: wrap;
+}
+
+.cards .card {
+  padding: 20px;
+  border-radius: 10px;
+  flex: 1 1 250px;
+  max-width: 300px;
+  text-align: center;
+  color: #fff !important;
+  font-weight: bold;
+}
+
+.card1 { background: #0ea5e9; }
+.card2 { background: #8b5cf6; }
+.card3 { background: #b90ee4; }
+.card4 { background: #dd0896; }
+
+/* 4. Contact */
+.contact {
+  padding: 40px 20px;
+  background: #eee;
+  text-align: center;
+}
+
+/* 5. Footer */
+footer {
+  text-align: center;
+  background: #333;
+  color: #fff;
+  padding: 10px;
+}
+
+/* ===== Palier tablette ===== */
+@media (max-width: 900px) {
+  /* Header : un peu plus compact */
+  header {
+    padding: 0.75rem 1rem;
+  }
+
+  /* Menu autorisé à passer sur deux lignes et centré si besoin */
+  header ul {
+    flex-wrap: wrap;
+    justify-content: center;
+  }
+
+  /* Cartes : favorise 2 par ligne */
+  .cards .card {
+    flex: 1 1 45%;
+    max-width: 45%;
+  }
+
+  /* Section services : un peu moins de marge */
+  .services {
+    padding: 30px 16px;
+  }
+
+  /* Hero : réduit légèrement le padding pour éviter de “manger” l’écran */
+  .hero {
+    padding: 80px 16px;
+  }
+}
+
+/* ===== Palier mobile ===== */
+@media (max-width: 600px) {
+  /* Header en colonne + centrage du contenu */
+  header {
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+    gap: 0.5rem;
+    padding: 0.75rem 0.75rem;
+  }
+
+  header ul {
+    justify-content: center;
+    gap: 0.75rem;
+  }
+
+  /* Hero plus compact sur mobile */
+  .hero {
+    padding: 48px 12px;
+  }
+  .hero .btn {
+    white-space: nowrap; /* évite que le texte du bouton casse */
+  }
+
+  /* Cartes : une seule colonne large */
+  .cards {
+    flex-direction: column;
+    align-items: center;
+  }
+  .cards .card {
+    flex: 1 1 100%;
+    max-width: 100%;
+  }
+
+  /* Contact plus compact */
+  .contact {
+    padding: 28px 12px;
+  }
+
+  /* Footer : rien à faire de spécial, juste s’assurer du centrage */
+  footer {
+    padding: 12px;
+    text-align: center;
+  }
+}
+
+
