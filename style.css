@@ -168,4 +168,8 @@ footer {
   }
 }
 
+@media (max-width: 900px) { body { border: 5px solid orange; } }
+@media (max-width: 600px) { body { border: 5px solid red; } }
+
+
 
