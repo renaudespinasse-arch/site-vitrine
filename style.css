@@ -34,17 +34,39 @@ header a {
   background: linear-gradient(135deg, #0ea5e9, #8b5cf6);
   color: #fff;
   text-align: center;
-  padding: 100px 20px;
+  padding: 5rem 1rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.hero-content {
+  max-width: 960px;
+  text-align: center;
+  margin: 0 auto;
+}
+
+.hero h2 {
+  font-size: clamp(2rem, 4vw, 3rem);
+  line-height: 1.1;
+  margin: 0 0 1rem;
+}
+
+.hero .subtitle {
+  font-size: clamp(1rem, 2.2vw, 1.25rem);
+  margin: 0 0 1.5rem;
+  opacity: 0.9;
 }
 
 .hero .btn {
   display: inline-block;
   margin-top: 1rem;
-  padding: 12px 24px;
-  background: #111;
+  padding: 0.875rem 1.25rem;
+  background: #0ea5e9;
   color: #fff;
-  border-radius: 8px;
+  border-radius: 0.75rem;
   text-decoration: none;
+  font-weight: 600;
   white-space: nowrap;
 }
 
