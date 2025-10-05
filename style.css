@@ -167,10 +167,23 @@ footer {
 
   /* Hero plus compact sur mobile */
   .hero {
-    padding: 48px 12px;
+    padding: 3.5rem 1rem;
   }
+
+  .hero h2 {
+    font-size: 1.8rem;
+  }
+
+  .hero .subtitle {
+    font-size: 1rem;
+    margin: 0.5rem 0 1.25rem;
+  }
+  
   .hero .btn {
     white-space: nowrap; /* évite que le texte du bouton casse */
+    width: 100%;
+    max-width: 320px;
+    padding: 0.9rem 1rem;
   }
 
   /* Cartes : une seule colonne large */
