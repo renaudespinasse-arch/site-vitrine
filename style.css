@@ -1,8 +1,38 @@
-/* Reset et polices */
+/* =============================
+   VARIABLES GLOBALES & BASE
+   ============================= */
+
+/* Base typographique du site */
+html {
+  font-size: 16px; /* 1rem = 16px */
+}
+
+/* Échelle d’espacement (marges/paddings) */
+:root {
+  --space-xxs: 0.25rem; /* 4px */
+  --space-xs: 0.5rem;   /* 8px */
+  --space-sm: 0.75rem;  /* 12px */
+  --space-md: 1rem;     /* 16px */
+  --space-lg: 1.5rem;   /* 24px */
+  --space-xl: 2rem;     /* 32px */
+  --space-xxl: 3rem;    /* 48px */
+
+  /* Échelle de tailles de texte */
+  --text-sm: 0.875rem;  /* 14px */
+  --text-base: 1rem;    /* 16px */
+  --text-lg: 1.25rem;   /* 20px */
+  --text-xl: 1.5rem;    /* 24px */
+  --text-xxl: 2rem;     /* 32px */
+}
+
+/* Styles de base du document */
 body {
+  font-size: var(--text-base);
+  font-family: "Inter", "Roboto", sans-serif;
+  line-height: 1.5;
+  color: #333;
   margin: 0;
-  font-family: Arial, sans-serif;
-  line-height: 1.6;
+  padding: 0;
 }
 
 /* 1. Header */
