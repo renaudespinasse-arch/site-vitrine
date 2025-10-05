@@ -201,11 +201,11 @@ footer {
   }
 
   .hero h2 {
-    font-size: var(--space-xl);
+    font-size: var(--text-xxl);
   }
 
   .hero .subtitle {
-    font-size: var(--space-md);
+    font-size: var(--text-base);
     margin: var(--space-xs) var(--space-md);
   }
   
