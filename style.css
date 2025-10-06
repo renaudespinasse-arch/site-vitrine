@@ -246,3 +246,17 @@ footer {
     border: 5px solid red;
   }
 }
+/* ======= TEST CSS ROBUSTESSE ======= */
+body::after {
+  content: "✅ CSS chargé jusqu'à la fin";
+  position: fixed;
+  bottom: 10px;
+  right: 10px;
+  background: limegreen;
+  color: white;
+  font-size: 0.75rem;
+  padding: 0.25rem 0.5rem;
+  border-radius: 4px;
+  opacity: 0.8;
+  z-index: 9999;
+}
