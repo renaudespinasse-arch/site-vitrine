@@ -48,7 +48,7 @@ header {
 header ul {
   list-style: none;
   display: flex;
-  gap: 1rem;
+  gap: var(--space-md);
   margin: 0;
   padding: 0;
   flex-wrap: wrap;
@@ -64,7 +64,7 @@ header a {
   background: linear-gradient(135deg, #0ea5e9, #8b5cf6);
   color: #fff;
   text-align: center;
-  padding: var(--space-xxl) var(--space-md);
+  padding: clamp(var(--space-xl), 8vw, var(--space-xxl)) var(--space-md);
   display: flex;
   align-items: center;
   justify-content: center;
@@ -102,8 +102,12 @@ header a {
 
 /* 3. Services */
 .services {
-  padding: 40px 20px;
+  padding: var(--space-xl) var(--space-md);
   text-align: center;
+}
+
+.services h2 {
+   font-size: clamp(var(--text-xl), 3vw, var(--text-xxl));
 }
 
 .cards {
@@ -115,7 +119,7 @@ header a {
 }
 
 .cards .card {
-  padding: var(--space-md);
+  padding: clamp(var(--space-sm), 2vw, var(--space-md);
   border-radius: 10px;
   flex: 1 1 250px;
   max-width: 300px;
@@ -131,7 +135,7 @@ header a {
 
 /* 4. Contact */
 .contact {
-  padding: var(--space-xxl) var(--space-md);
+  padding: clamp(var(--space-xl), 6vw, var(--space-xxl)) var(--space-md);
   background: #eee;
   text-align: center;
 }
@@ -165,12 +169,12 @@ footer {
 
   /* Section services : un peu moins de marge */
   .services {
-    padding: 30px 16px;
+    padding: var(--space-lg) var(--space-md);
   }
 
   /* Hero : réduit légèrement le padding pour éviter de “manger” l’écran */
   .hero {
-    padding: 80px 16px;
+    padding: var(--space-xxl) var(--space-md);
   }
   
   /* DEBUG : bordure orange pour visualiser */
@@ -228,12 +232,12 @@ footer {
 
   /* Contact plus compact */
   .contact {
-    padding: 28px 12px;
+    padding: var(--space-lg) var(--space-sm);
   }
 
   /* Footer : rien à faire de spécial, juste s’assurer du centrage */
   footer {
-    padding: 12px;
+    padding: var(--space-sm);
     text-align: center;
   }
 
