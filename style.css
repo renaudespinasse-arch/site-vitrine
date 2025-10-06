@@ -119,7 +119,7 @@ header a {
 }
 
 .cards .card {
-  padding: clamp(var(--space-sm), 2vw, var(--space-md);
+  padding: clamp(var(--space-sm), 2vw, var(--space-md));
   border-radius: 10px;
   flex: 1 1 250px;
   max-width: 300px;
