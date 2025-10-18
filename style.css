@@ -61,19 +61,31 @@ header a {
 
 /* 2. Hero */
 .hero {
-  background: linear-gradient(135deg, #0ea5e9, #8b5cf6);
-  color: #fff;
-  text-align: center;
-  padding: clamp(var(--space-xl), 8vw, var(--space-xxl)) var(--space-md);
+  position: relative;
+  min-height: 80vh; /* occupe 80% de la hauteur de la fenêtre */
   display: flex;
   align-items: center;
   justify-content: center;
+  text-align: center;
+  color: white;
+
+  background-image: url("assets/hero-bg.jpg"); /* ton image de fond */
+  background-size: cover;      /* remplie toute la zone */
+  background-position: center; /* centrée */
+  background-repeat: no-repeat;
+}
+
+/* voile sombre pour lisibilité du texte */
+.hero::before {
+  content: "";
+  position: absolute;
+  inset: 0; /* équivaut à top:0; right:0; bottom:0; left:0 */
+  background: rgba(0, 0, 0, 0.4);
 }
 
 .hero-content {
-  max-width: 960px;
-  text-align: center;
-  margin: 0 auto;
+  position: relative;
+  z-index: 1; /* au-dessus du voile */
 }
 
 .hero h2 {
@@ -98,6 +110,29 @@ header a {
   text-decoration: none;
   font-weight: 600;
   white-space: nowrap;
+}
+
+.btn.primary {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.5rem;
+  padding: 0.75rem 1.25rem;
+  border-radius: 8px;
+  font-weight: bold;
+  color: #fff;
+  background-color: #0ea5e9;
+  text-decoration: none;
+  background-image: url("assets/mail-icon.png");
+  background-repeat: no-repeat;
+  background-position: 1rem center;
+  background-size: 20px;
+  padding-left: 2.5rem; /* espace pour l’icône */
+  transition: background-color 0.3s;
+}
+
+.btn.primary:hover {
+  background-color: #0284c7;
 }
 
 /* 3. Services */
