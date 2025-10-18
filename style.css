@@ -86,18 +86,19 @@ header a {
 .hero-content {
   position: relative;
   z-index: 1; /* au-dessus du voile */
+  max-width: 800px;
+  padding: 3rem 2rem;
 }
 
 .hero h2 {
   font-size: clamp(2rem, 4vw, 3rem);
-  line-height: 1.1;
-  margin: 0 0 1rem;
+  margin-bottom: 1rem;
 }
 
 .hero .subtitle {
-  font-size: clamp(1rem, 2.2vw, 1.25rem);
-  margin: 0 0 1.5rem;
-  opacity: 0.9;
+  font-size: clamp(1rem, 2.5vw, 1.25rem);
+  margin-bottom: 2rem;
+  line-height: 1.6;
 }
 
 .hero .btn {
@@ -207,9 +208,13 @@ footer {
     padding: var(--space-lg) var(--space-md);
   }
 
-  /* Hero : réduit légèrement le padding pour éviter de “manger” l’écran */
   .hero {
-    padding: var(--space-xxl) var(--space-md);
+    min-height: 70vh;
+    background-position: center top;
+  }
+
+  .hero-content {
+    padding: 2.5rem 1.5rem;
   }
   
   /* DEBUG : bordure orange pour visualiser */
@@ -236,7 +241,16 @@ footer {
 
   /* Hero plus compact sur mobile */
   .hero {
-    padding: var(--space-xl) var(--space-md);
+    min-height: 60vh;
+    background-position: center;
+  }
+
+  .hero::before {
+    background: rgba(0, 0, 0, 0.55); /* fond un peu plus sombre pour lisibilité */
+  }
+
+  .hero-content {
+    padding: 2rem 1rem;
   }
 
   .hero h2 {
@@ -245,14 +259,14 @@ footer {
 
   .hero .subtitle {
     font-size: var(--text-base);
-    margin: var(--space-xs) var(--space-md);
+    margin-bottom: 1.5rem;
   }
   
   .hero .btn {
-    white-space: nowrap; /* évite que le texte du bouton casse */
-    width: 100%;
-    max-width: 320px;
-    padding: var(--space-md);
+    font-size: 0.95rem;
+    padding: 0.6rem 1rem 0.6rem 2rem;
+    background-size: 18px;
+    background-position: 0.7rem;
   }
 
   /* Cartes : une seule colonne large */
