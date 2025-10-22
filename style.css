@@ -101,39 +101,55 @@ header a {
   line-height: 1.6;
 }
 
-.hero .btn {
-  display: inline-block;
-  margin-top: var(--space-md);
-  padding: 0.875rem 1.25rem;
-  background: #0ea5e9;
-  color: #fff;
-  border-radius: var(--space-sm);
-  text-decoration: none;
-  font-weight: 600;
-  white-space: nowrap;
-}
-
-.btn.primary {
+/* === 1. Style de base pour tous les boutons === */
+.btn {
   display: inline-flex;
   align-items: center;
   justify-content: center;
   gap: 0.5rem;
   padding: 0.75rem 1.25rem;
   border-radius: 8px;
-  font-weight: bold;
+  font-weight: 600;
+  text-decoration: none;
+  white-space: nowrap;
+  transition: background-color 0.3s, transform 0.2s;
+  cursor: pointer;
+}
+
+/* ===== Bouton principal ===== */
+.btn.primary {
+  display: flex;                   /* Aligne icône + texte sur une ligne */
+  align-items: center;             /* Centre verticalement */
+  justify-content: center;         /* Centre horizontalement */
+  gap: 0.6rem;                     /* Espace entre l’icône et le texte */
+
   color: #fff;
   background-color: #0ea5e9;
   text-decoration: none;
-  background-image: url("assets/mail-icon.png");
-  background-repeat: no-repeat;
-  background-position: 1rem center;
-  background-size: 20px;
-  padding-left: 2.5rem; /* espace pour l’icône */
-  transition: background-color 0.3s;
+  font-weight: 600;
+  border-radius: 0.75rem;
+
+  padding: 0.8rem 1.4rem;
+  font-size: clamp(0.9rem, 1vw + 0.7rem, 1.1rem);
+
+  transition: background 0.3s ease, transform 0.2s ease;
 }
 
+/* ===== Icône dans le bouton ===== */
+.btn.primary .icon {
+  width: 1.2em;    /* taille relative au texte */
+  height: auto;
+}
+
+/* ===== Effet au survol ===== */
 .btn.primary:hover {
-  background-color: #0284c7;
+  background-color: #0284c7; /* teinte légèrement plus foncée */
+  transform: translateY(-2px); /* bouton qui "remonte" légèrement */
+}
+
+/* === 3. Ajustements spécifiques pour le bouton du hero === */
+.hero .btn {
+  margin-top: var(--space-md);
 }
 
 /* 3. Services */
@@ -262,11 +278,9 @@ footer {
     margin-bottom: 1.5rem;
   }
   
-  .hero .btn {
-    font-size: 0.95rem;
-    padding: 0.6rem 1rem 0.6rem 2rem;
-    background-size: 18px;
-    background-position: 0.7rem;
+  .btn.primary {
+    width: 100%;
+    justify-content: center;
   }
 
   /* Cartes : une seule colonne large */
