@@ -10,25 +10,30 @@ html {
 /* Échelle d’espacement (marges/paddings) */
 :root {
   --space-xxs: 0.25rem; /* 4px */
-  --space-xs: 0.5rem;   /* 8px */
-  --space-sm: 0.75rem;  /* 12px */
-  --space-md: 1rem;     /* 16px */
-  --space-lg: 1.5rem;   /* 24px */
-  --space-xl: 2rem;     /* 32px */
-  --space-xxl: 3rem;    /* 48px */
+  --space-xs: 0.5rem; /* 8px */
+  --space-sm: 0.75rem; /* 12px */
+  --space-md: 1rem; /* 16px */
+  --space-lg: 1.5rem; /* 24px */
+  --space-xl: 2rem; /* 32px */
+  --space-xxl: 3rem; /* 48px */
 
   /* Échelle de tailles de texte */
-  --text-sm: 0.875rem;  /* 14px */
-  --text-base: 1rem;    /* 16px */
-  --text-lg: 1.25rem;   /* 20px */
-  --text-xl: 1.5rem;    /* 24px */
-  --text-xxl: 2rem;     /* 32px */
+  --text-sm: 0.875rem; /* 14px */
+  --text-base: 1rem; /* 16px */
+  --text-lg: 1.25rem; /* 20px */
+  --text-xl: 1.5rem; /* 24px */
+  --text-xxl: 2rem; /* 32px */
 }
 
 *,
 *::before,
 *::after {
   box-sizing: border-box;
+}
+
+.container {
+  width: min(1100px, 100% - 2 * var(--space-xl));
+  margin-inline: auto;
 }
 
 /* Styles de base du document */
@@ -41,28 +46,44 @@ body {
   padding: 0;
 }
 
+h2 {
+  margin: 0 0 var(--space-md);
+}
+
 /* 1. Header */
-header {
+.site-header {
   background: linear-gradient(135deg, #0ea5e9, #8b5cf6);
   color: #fff;
   padding: var(--space-md) var(--space-xl);
   display: flex;
   justify-content: space-between;
   align-items: center;
+  gap: var(--space-lg); /* utile si ça wrap */
 }
 
-header ul {
+.nav-list {
   list-style: none;
-  display: flex;
-  gap: var(--space-md);
   margin: 0;
   padding: 0;
+
+  display: flex;
   flex-wrap: wrap;
+  gap: var(--space-md);
 }
 
-header a {
+.nav-list a {
   color: #fff;
   text-decoration: none;
+  font-weight: 500;
+}
+
+.nav-list a:hover {
+  text-decoration: underline;
+}
+
+.nav-list a:focus-visible {
+  outline: 2px solid #fff;
+  outline-offset: 2px;
 }
 
 /* 2. Hero */
@@ -76,7 +97,7 @@ header a {
   color: white;
 
   background-image: url("assets/hero-bg.jpg"); /* ton image de fond */
-  background-size: cover;      /* remplie toute la zone */
+  background-size: cover; /* remplie toute la zone */
   background-position: center; /* centrée */
   background-repeat: no-repeat;
 }
@@ -98,7 +119,6 @@ header a {
 
 .hero h2 {
   font-size: clamp(2rem, 4vw, 3rem);
-  margin-bottom: 1rem;
 }
 
 .hero .subtitle {
@@ -109,48 +129,37 @@ header a {
 
 /* === 1. Style de base pour tous les boutons === */
 .btn {
-  display: inline-flex;
-  align-items: center;
-  justify-content: center;
-  gap: 0.5rem;
-  padding: 0.75rem 1.25rem;
-  border-radius: 8px;
+  display: flex; /* Aligne icône + texte sur la même ligne */
+  align-items: center; /* Centre verticalement */
+  justify-content: center; /* Centre horizontalement */
+  gap: 0.6rem; /* Espace entre l’icône et le texte */
+
+  padding: 0.8rem 1.4rem;
+  border-radius: 0.75rem;
   font-weight: 600;
+  font-size: clamp(0.9rem, 1vw + 0.7rem, 1.1rem);
   text-decoration: none;
   white-space: nowrap;
-  transition: background-color 0.3s, transform 0.2s;
   cursor: pointer;
+  border: none;
+  min-height: 44px;
+
+  /* transition fluide commune à tous les boutons */
+  transition:
+    background-color 0.3s ease,
+    transform 0.2s ease;
 }
 
 /* ===== Bouton principal ===== */
 .btn.primary {
-  display: flex;                   /* Aligne icône + texte sur une ligne */
-  align-items: center;             /* Centre verticalement */
-  justify-content: center;         /* Centre horizontalement */
-  gap: 0.6rem;                     /* Espace entre l’icône et le texte */
-
   color: #fff;
   background-color: #0ea5e9;
-  text-decoration: none;
-  font-weight: 600;
-  border-radius: 0.75rem;
-
-  padding: 0.8rem 1.4rem;
-  font-size: clamp(0.9rem, 1vw + 0.7rem, 1.1rem);
-
-  transition: background 0.3s ease, transform 0.2s ease;
 }
 
 /* ===== Icône dans le bouton ===== */
-.btn.primary .icon {
-  width: 1.2em;    /* taille relative au texte */
+.btn .icon {
+  width: 1.2em; /* taille relative au texte */
   height: auto;
-}
-
-/* ===== Effet au survol ===== */
-.btn.primary:hover {
-  background-color: #0284c7; /* teinte légèrement plus foncée */
-  transform: translateY(-2px); /* bouton qui "remonte" légèrement */
 }
 
 /* === 3. Ajustements spécifiques pour le bouton du hero === */
@@ -160,42 +169,180 @@ header a {
 
 /* 3. Services */
 .services {
-  padding: var(--space-xl) var(--space-md);
+  padding: var(--space-xl) 0;
   text-align: center;
 }
 
 .services h2 {
-   font-size: clamp(var(--text-xl), 3vw, var(--text-xxl));
+  font-size: clamp(var(--text-xl), 3vw, var(--text-xxl));
 }
 
 .cards {
   display: flex;
-  gap: var(--space-md);
-  justify-content: center;
-  margin-top: var(--space-md);
   flex-wrap: wrap;
+  justify-content: center;
+  gap: var(--space-md);
+  margin-top: var(--space-md);
 }
 
-.cards .card {
-  padding: clamp(var(--space-sm), 2vw, var(--space-md));
-  border-radius: 10px;
+.card {
   flex: 1 1 250px;
   max-width: 300px;
+  padding: clamp(var(--space-sm), 2vw, var(--space-md));
+  border-radius: 10px;
+
   text-align: center;
-  color: #fff !important;
-  font-weight: bold;
+  color: #fff;
+  font-weight: 700;
 }
 
-.card1 { background: #0ea5e9; }
-.card2 { background: #8b5cf6; }
-.card3 { background: #b90ee4; }
-.card4 { background: #dd0896; }
+.card--dev {
+  background: #0ea5e9;
+}
+.card--design {
+  background: #8b5cf6;
+}
+.card--coach {
+  background: #b90ee4;
+}
+.card--seo {
+  background: #dd0896;
+}
+
+.testimonials {
+  padding-block: var(--space-xl);
+  background: #b397c5;
+  text-align: center;
+}
+
+.testimonials-list {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--space-lg);
+  justify-content: center;
+  margin-top: var(--space-lg);
+}
+
+.testimonial-card {
+  flex: 1 1 280px;
+  max-width: 320px;
+  padding: clamp(var(--space-md), 4vw, var(--space-lg));
+  border-radius: 10px;
+  background: #ccc;
+  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.08);
+}
+
+.testimonial-text {
+  margin: 0 0 var(--space-md);
+  font-size: var(--text-lg);
+  line-height: 1.6;
+}
+
+.testimonial-author {
+  margin: 0;
+  font-weight: 600;
+  opacity: 0.9;
+}
 
 /* 4. Contact */
 .contact {
-  padding: clamp(var(--space-xl), 6vw, var(--space-xxl)) var(--space-md);
+  padding: clamp(var(--space-xl), 6vw, var(--space-xxl)) 0;
   background: #eee;
   text-align: center;
+}
+
+.contact-details {
+  margin: 0 auto;
+  max-width: 600px;
+  text-align: left;
+}
+
+.contact-details p {
+  margin: var(--space-sm) 0;
+}
+
+.contact a {
+  color: inherit; /* évite le bleu par défaut du navigateur tout en gardant le contraste */
+  font-weight: 600;
+}
+
+.contact-grid {
+  display: grid;
+  gap: var(--space-lg);
+  margin-top: var(--space-lg);
+}
+
+.contact-form {
+  text-align: left;
+  background: #fff;
+  padding: var(--space-lg);
+  border-radius: 12px;
+}
+
+.field {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-xs);
+  margin-bottom: var(--space-md);
+}
+
+.field label {
+  font-weight: 600;
+}
+
+.field input,
+.field textarea {
+  font: inherit;
+  padding: 0.75rem 1rem;
+  border: 1px solid #ccc;
+  border-radius: 10px;
+  width: 100%;
+}
+
+.field textarea {
+  resize: vertical; /* empêche de redimensionner le champ sur la largeur */
+}
+
+.char-count {
+  font-size: var(--text-sm);
+  opacity: 0.8;
+}
+
+.char-count.is-error {
+  color: #b91c1c;
+  opacity: 1;
+}
+
+.contact-form .btn.primary {
+  width: 100%;
+  justify-content: center;
+}
+
+.field input:focus-visible,
+.field textarea:focus-visible {
+  outline: 2px solid #0ea5e9;
+  outline-offset: 2px;
+  border-color: transparent;
+}
+
+.form-feedback {
+  margin-top: var(--space-sm);
+  font-weight: 600;
+}
+
+/* Succès */
+.form-feedback.is-success {
+  color: #0a7a2f;
+}
+
+.form-feedback.is-error {
+  color: #b91c1c; /* rouge lisible */
+}
+
+/* Bouton désactivé */
+.contact-form .btn.primary:disabled {
+  opacity: 0.7;
+  cursor: not-allowed;
 }
 
 /* 5. Footer */
@@ -206,28 +353,34 @@ footer {
   padding: var(--space-sm);
 }
 
+@media (min-width: 901px) {
+  .contact-grid {
+    grid-template-columns: 2fr 1fr;
+    align-items: start;
+  }
+}
+
 /* ===== Palier tablette ===== */
 @media (max-width: 900px) {
   /* Header : un peu plus compact */
-  header {
+  .site-header {
     padding: var(--space-sm) var(--space-md);
   }
 
   /* Menu autorisé à passer sur deux lignes et centré si besoin */
-  header ul {
-    flex-wrap: wrap;
+  .nav-list {
     justify-content: center;
   }
 
   /* Cartes : favorise 2 par ligne */
-  .cards .card {
+  .card {
     flex: 1 1 45%;
     max-width: 45%;
   }
 
-  /* Section services : un peu moins de marge */
-  .services {
-    padding: var(--space-lg) var(--space-md);
+  .testimonial-card {
+    flex: 1 1 45%;
+    max-width: 45%;
   }
 
   .hero {
@@ -236,27 +389,22 @@ footer {
   }
 
   .hero-content {
-    padding: 2.5rem 1.5rem;
+    padding: var(--space-xxl) var(--space-lg);
   }
-  
-  /* DEBUG : bordure orange pour visualiser */
-  body {
-    border: 5px solid orange;
-  }  
 }
 
 /* ===== Palier mobile ===== */
 @media (max-width: 600px) {
   /* Header en colonne + centrage du contenu */
-  header {
+  .site-header {
     flex-direction: column;
     align-items: center;
     text-align: center;
-    gap: var(--space-xs) var(--space-sm);
-    padding: var(--space-sm) var(--space-sm);
+    gap: var(--space-sm);
+    padding: var(--space-sm);
   }
 
-  header ul {
+  .nav-list {
     justify-content: center;
     gap: var(--space-sm);
   }
@@ -268,11 +416,16 @@ footer {
   }
 
   .hero::before {
-    background: rgba(0, 0, 0, 0.55); /* fond un peu plus sombre pour lisibilité */
+    background: rgba(
+      0,
+      0,
+      0,
+      0.55
+    ); /* fond un peu plus sombre pour lisibilité */
   }
 
   .hero-content {
-    padding: 2rem 1rem;
+    padding: var(--space-xl) var(--space-md);
   }
 
   .hero h2 {
@@ -281,10 +434,10 @@ footer {
 
   .hero .subtitle {
     font-size: var(--text-base);
-    margin-bottom: 1.5rem;
+    margin-bottom: var(--space-lg);
   }
-  
-  .btn.primary {
+
+  .hero .btn.primary {
     width: 100%;
     justify-content: center;
   }
@@ -294,27 +447,47 @@ footer {
     flex-direction: column;
     align-items: center;
   }
-  .cards .card {
+  .card {
+    flex: 1 1 100%;
+    max-width: 100%;
+  }
+
+  .testimonials-list {
+    flex-direction: column;
+    align-items: center;
+  }
+
+  .testimonial-card {
     flex: 1 1 100%;
     max-width: 100%;
   }
 
   /* Contact plus compact */
   .contact {
-    padding: var(--space-lg) var(--space-sm);
+    padding-block: var(--space-xl);
   }
 
   /* Footer : rien à faire de spécial, juste s’assurer du centrage */
   footer {
     padding: var(--space-sm);
-    text-align: center;
-  }
-
-  /* DEBUG : bordure rouge pour visualiser */
-  body {
-    border: 5px solid red;
   }
 }
+
+/* Debug breakpoints (optionnel) */
+@media (max-width: 900px) {
+  body {
+    outline: 5px solid orange;
+    outline-offset: -5px;
+  }
+}
+
+@media (max-width: 600px) {
+  body {
+    outline: 5px solid red;
+    outline-offset: -5px;
+  }
+}
+
 /* ======= TEST CSS ROBUSTESSE ======= */
 body::after {
   content: "✅ CSS chargé jusqu'à la fin";

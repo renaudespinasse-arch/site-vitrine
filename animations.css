@@ -1,0 +1,65 @@
+/* ===== Effet au survol ===== */
+.btn.primary:hover {
+  background-color: #0284c7; /* teinte légèrement plus foncée */
+  transform: translateY(-2px); /* effet de soulèvement */
+}
+
+.btn.primary:active {
+  transform: translateY(0); /* revient à sa place pendant le clic */
+  box-shadow: inset 0 2px 4px rgba(0, 0, 0, 0.2); /* effet de "pression" */
+}
+
+/* =========================================================
+   FICHIER : animations.css
+   OBJET : Système d'animations basé sur data-anim
+   ========================================================= */
+
+/* === Fallback sans JS === */
+[data-anim] {
+  opacity: 1;
+  transform: none;
+}
+
+/* === Quand JS est activé === */
+.js-enabled [data-anim] {
+  opacity: 0;
+  transform: translateY(20px);
+}
+
+/* === Animation fluide (fade) === */
+.js-enabled [data-anim="fade"] {
+  transition: opacity 0.8s ease, transform 0.8s ease;
+}
+.js-enabled [data-anim="fade"].visible {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+/* === Animation en cascade (cartes) === */
+
+/* Parent : toujours visible */
+.js-enabled [data-anim="stagger"] {
+  opacity: 1;
+  transform: none;
+}
+
+/* Cartes : invisibles au départ */
+.js-enabled [data-anim="stagger"] .card {
+  opacity: 0;
+  transform: translateY(20px);
+  transition: none !important; /* désactive les transitions héritées */
+}
+
+/* Cartes visibles : animation keyframes */
+.js-enabled [data-anim="stagger"] .card.visible {
+  opacity: 1;
+  transform: translateY(0);
+  animation: fadeInUp 0.8s ease forwards;
+}
+
+/* Définition unique des keyframes */
+@keyframes fadeInUp {
+  from { opacity: 0; transform: translateY(20px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+

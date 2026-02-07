@@ -1,54 +1,148 @@
 <!doctype html>
 <html lang="fr">
-<head>
-  <meta charset="utf-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>Test site vitrine</title>
-  <link rel="stylesheet" href="style.css" />
-</head>
-<body>
-  
-  <header>
-    <h1 class="logo">Site de Renaud</h1>
-    <nav>
-      <ul>
-        <li><a href="#accueil">Accueil</a></li>
-        <li><a href="#services">Services</a></li>
-        <li><a href="#contact">Contact</a></li>
-      </ul>
-    </nav>
-  </header>
-  
-  <section class="hero" id="hero">
-    <div class="hero-content">
-      <h2>Bienvenue sur mon site vitrine</h2>
-      <p class= "subtitle">Nous aidons nos clients à réussir en ligne 🚀</p>
-      <a href="#contact" class="btn primary">
-       <img src="assets/mail-icon.png" alt="Icône de courrier" class="icon">
-       Nous contacter
-      </a>
-    </div>
-  </section>
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Test site vitrine</title>
+    <link rel="stylesheet" href="style.css" />
+    <link rel="stylesheet" href="animations.css" />
+  </head>
+  <body>
+    <header class="site-header" id="accueil">
+      <h1 class="logo">Site de Renaud</h1>
+      <nav class="main-nav" aria-label="Navigation principale">
+        <ul class="nav-list">
+          <li><a href="#accueil">Accueil</a></li>
+          <li><a href="#services">Services</a></li>
+          <li><a href="#contact">Contact</a></li>
+        </ul>
+      </nav>
+    </header>
 
-  <section id="services" class="services">
-    <h2>Nos services</h2>
-    <div class="cards">
-      <div class="card card1">💻 Développement logiciel</div>
-      <div class="card card2">🎨 Design graphique</div>
-      <div class="card card3">🤝 Conseil et accompagnement</div>
-      <div class="card card4">🌎 Référencement SEO</div>
-    </div>
-  </section>
-  
-  <section id="contact" class="contact">
-    <h2>Contactez-nous</h2>
-    <p>Email : <a href="mailto:contact@monsite.com">contact@monsite.com</a></p>
-    <p>Téléphone : 01 23 45 67 89</p>
-  </section>
-  <footer>
-    <p>© 2025 Mon Entreprise - Tous droits réservés</p>
-  </footer>
+    <section class="hero" id="hero" data-anim="fade">
+      <div class="hero-content">
+        <h2>Bienvenue sur mon site vitrine</h2>
+        <p class="subtitle">Nous aidons nos clients à réussir en ligne 🚀</p>
+        <a href="#contact" class="btn primary">
+          <img
+            src="assets/mail-icon.png"
+            alt="Icône de courrier"
+            class="icon"
+          />
+          Nous contacter
+        </a>
+      </div>
+    </section>
 
-</body>
+    <section id="services" class="services" data-anim="stagger">
+      <div class="container">
+        <h2>Nos services</h2>
+        <div class="cards">
+          <article class="card card--dev">💻 Développement logiciel</article>
+          <article class="card card--design">🎨 Design graphique</article>
+          <article class="card card--coach">
+            🤝 Conseil et accompagnement
+          </article>
+          <article class="card card--seo">🌎 Référencement SEO</article>
+        </div>
+      </div>
+    </section>
+
+    <section id="testimonials" class="testimonials">
+      <div class="container">
+        <h2>Témoignages</h2>
+
+        <div class="testimonials-list">
+          <article class="testimonial-card">
+            <p class="testimonial-text">
+              “Service rapide et super clair. Notre site est enfin pro.”
+            </p>
+            <p class="testimonial-author">— Camille, PME</p>
+          </article>
+
+          <article class="testimonial-card">
+            <p class="testimonial-text">
+              “Le design est top et le site s’adapte parfaitement au mobile.”
+            </p>
+            <p class="testimonial-author">— Mehdi, Indépendant</p>
+          </article>
+
+          <article class="testimonial-card">
+            <p class="testimonial-text">
+              “On a gagné en visibilité. Les conseils étaient concrets et
+              efficaces.”
+            </p>
+            <p class="testimonial-author">— Sarah, E-commerce</p>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <section id="contact" class="contact" data-anim="fade">
+      <div class="container">
+        <h2>Contactez-nous</h2>
+
+        <div class="contact-grid">
+          <form class="contact-form" id="contact-form" action="#" method="post">
+            <div class="field">
+              <label for="name">Nom</label>
+              <input
+                id="name"
+                name="name"
+                type="text"
+                autocomplete="name"
+                required
+              />
+            </div>
+
+            <div class="field">
+              <label for="email">Email</label>
+              <input
+                id="email"
+                name="email"
+                type="email"
+                autocomplete="email"
+                required
+              />
+            </div>
+
+            <div class="field">
+              <label for="sujet">Sujet</label>
+              <textarea id="sujet" name="sujet" rows="2" required></textarea>
+            </div>
+
+            <div class="field">
+              <label for="message">Message</label>
+              <textarea
+                id="message"
+                name="message"
+                rows="5"
+                required
+              ></textarea>
+              <p class="char-count" aria-live="polite">0 / 300</p>
+            </div>
+
+            <button type="submit" class="btn primary">Envoyer</button>
+          </form>
+
+          <address class="contact-details">
+            <p>
+              Email :
+              <a href="mailto:contact@monsite.com">contact@monsite.com</a>
+            </p>
+            <p>
+              Téléphone :
+              <a href="tel:+33123456789">01 23 45 67 89</a>
+            </p>
+          </address>
+        </div>
+      </div>
+    </section>
+
+    <footer>
+      <p>© 2025 Mon Entreprise - Tous droits réservés</p>
+    </footer>
+
+    <script src="script.js"></script>
+  </body>
 </html>
-    
