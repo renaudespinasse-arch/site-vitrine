@@ -61,6 +61,11 @@ h2 {
   gap: var(--space-lg); /* utile si ça wrap */
 }
 
+/* exercice menu mobile */
+.menu-toggle {
+  display: none; /* menu mobile invisible sur desktop */
+}
+
 .nav-list {
   list-style: none;
   margin: 0;
@@ -167,6 +172,110 @@ h2 {
   margin-top: var(--space-md);
 }
 
+/* exercice onglets tabs */
+.tabs-demo {
+  padding-top: var(--space-xl);
+}
+
+.tabs-buttons {
+  display: flex;
+  justify-content: center;
+  gap: var(--space-sm);
+  flex-wrap: wrap;
+  margin-bottom: var(--space-md);
+}
+
+.tab-btn {
+  padding: 0.6rem 1rem;
+  border: none;
+  border-radius: 8px;
+  background: #ddd;
+  cursor: pointer;
+}
+
+.tab-btn.active {
+  background: #8b5cf6;
+  color: white;
+}
+
+.tab-panel {
+  display: none;
+  text-align: center;
+}
+
+.tab-panel.active {
+  display: block;
+}
+
+/* exercice filtre de projets */
+.filter-buttons {
+  display: flex;
+  justify-content: center;
+  gap: var(--space-sm);
+  margin-bottom: var(--space-lg);
+}
+
+.filter-btn.active {
+  background: #0ea5e9;
+  color: white;
+}
+
+.js-filter-demo .projects-list {
+  display: grid;
+  gap: var(--space-md);
+  grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+  align-items: start;
+}
+
+.js-filter-demo .project-card {
+  background: #fff;
+  padding: var(--space-md);
+  border-radius: 10px;
+  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.08);
+  text-align: center;
+  transition:
+    opacity 250ms ease,
+    transform 250ms ease;
+  will-change: opacity, transform;
+}
+
+.js-filter-demo .project-card.hidden {
+  opacity: 0;
+  transform: scale(0.95);
+  pointer-events: none;
+}
+
+.js-filter-demo .project-card.is-hidden {
+  display: none;
+}
+
+/* section a propos */
+.about {
+  padding: clamp(var(--space-xl), 6vw, var(--space-xxl)) 0;
+  background: #eee;
+  text-align: center;
+}
+
+.about h2 {
+  font-size: clamp(var(--text-xl), 3vw, var(--text-xxl));
+}
+
+.about-grid {
+  margin-top: var(--space-lg);
+  display: grid;
+  grid-template-columns: 2fr 1fr;
+  gap: var(--space-lg);
+}
+
+.about-placeholder {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background: #b91c1c;
+  min-height: 240px;
+  border-radius: 10px;
+}
+
 /* 3. Services */
 .services {
   padding: var(--space-xl) 0;
@@ -188,12 +297,22 @@ h2 {
 .card {
   flex: 1 1 250px;
   max-width: 300px;
-  padding: clamp(var(--space-sm), 2vw, var(--space-md));
+  padding: 0; /* ✅ on déplace le padding sur .card-inner */
+  overflow: visible; /* ✅ garantit que le radius clippe bien */
   border-radius: 10px;
 
   text-align: center;
   color: #fff;
   font-weight: 700;
+}
+
+.cards .card .card-inner {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  min-height: 80px; /* optionnel : hauteur confortable */
+  padding: clamp(var(--space-sm), 2vw, var(--space-md));
 }
 
 .card--dev {
@@ -209,6 +328,235 @@ h2 {
   background: #dd0896;
 }
 
+/* Hover lift sur les cartes services SANS toucher au transform de l'animation */
+.js-enabled [data-anim="stagger"] .card.visible {
+  transition:
+    translate 150ms ease,
+    box-shadow 150ms ease !important;
+}
+
+.js-enabled [data-anim="stagger"] .card.visible:hover {
+  translate: 0 -4px;
+  box-shadow:
+    0 10px 20px rgba(0, 0, 0, 0.1),
+    0 2px 6px rgba(0, 0, 0, 0.06);
+}
+
+/* section boutons tests */
+.transition-test {
+  text-align: center;
+  padding-bottom: var(--space-xl);
+}
+
+.anim-test {
+  display: flex;
+  gap: var(--space-md);
+  justify-content: center;
+  flex-wrap: wrap;
+  margin-top: var(--space-lg);
+}
+
+/* TEST TIMING FUNCTIONS — très visible */
+.anim-test .btn.primary {
+  /* état de base clair */
+  transform: translateY(0);
+  box-shadow: none;
+}
+
+/* Même hover pour les 3 : déplacement + légère ombre */
+.anim-test .btn.primary:hover {
+  transform: translateY(-12px);
+  box-shadow: 0 18px 35px rgba(0, 0, 0, 0.25);
+}
+
+.anim-test .btn-ease {
+  transition:
+    transform 900ms ease,
+    box-shadow 900ms ease;
+}
+
+.anim-test .btn-easeout {
+  transition:
+    transform 900ms ease-out,
+    box-shadow 900ms ease-out;
+}
+
+.anim-test .btn-linear {
+  transition:
+    transform 900ms linear,
+    box-shadow 900ms linear;
+}
+
+.anim-box {
+  width: 150px;
+  padding: 1rem;
+  margin: 2rem auto;
+  text-align: center;
+  background: #8b5cf6;
+  color: white;
+  border-radius: 8px;
+}
+
+@keyframes slideUp {
+  from {
+    transform: translateY(40px);
+    opacity: 0;
+  }
+  to {
+    transform: translateY(0);
+    opacity: 1;
+  }
+}
+
+.anim-box {
+  animation: slideUp 600ms ease-out;
+  animation-fill-mode: both;
+  transition:
+    translate 200ms ease-out,
+    box-shadow 200ms ease-out;
+}
+
+.anim-box:hover {
+  translate: 0 -6px;
+  box-shadow: 0 12px 24px rgba(0, 0, 0, 0.18);
+}
+
+.link-demo {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: var(--space-lg);
+}
+
+.fancy-link {
+  position: relative; /* repère pour ::after */
+  color: inherit;
+  display: inline-block; /* crucial */
+  overflow: hidden;
+  text-decoration: none; /* on enlève le underline classique */
+  font-weight: 600;
+  padding-bottom: 0.3em; /* espace proportionnel au texte */
+}
+
+.fancy-link::after {
+  content: "";
+  position: absolute;
+  left: 0;
+  bottom: 0.1em; /* légèrement au-dessus du bas */
+  width: 100%;
+  height: 0.1em; /* épaisseur proportionnelle */
+  background: currentColor; /* prend la couleur du texte */
+}
+
+.fancy-link--scale::after {
+  transform: scaleX(0);
+  transform-origin: left;
+  transition: transform 200ms ease-out;
+}
+
+.fancy-link--scale:hover::after {
+  transform: scaleX(1);
+}
+
+.fancy-link--slide::after {
+  transform: translateX(-105%); /* un peu plus que -100% pour être sûr */
+  transition: transform 300ms ease-out;
+}
+
+.fancy-link--slide:hover::after {
+  transform: translateX(0);
+}
+
+.fancy-link--clip::after {
+  clip-path: inset(0 50% 0 50%); /* part du centre */
+  transition: clip-path 250ms ease-out;
+}
+
+.fancy-link--clip:hover::after {
+  clip-path: inset(0 0 0 0); /* 100% visible */
+}
+
+.fancy-link--clip {
+  margin-bottom: var(--space-xl);
+}
+
+.toggle-box {
+  width: 150px;
+  height: 100px;
+  margin: 1rem auto;
+  display: grid;
+  place-items: center;
+  background: #ccc;
+  border-radius: 10px;
+  transition:
+    background 200ms ease-out,
+    translate 200ms ease-out;
+}
+
+.toggle-box.active {
+  background: #8b5cf6;
+  translate: 0 -6px;
+}
+
+/* section projets recents */
+.projects {
+  background: #8b5cf6;
+  padding: var(--space-xl) 0;
+  text-align: center;
+}
+
+.projects-grid {
+  margin-top: var(--space-lg);
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+  gap: var(--space-md);
+}
+
+.project-card {
+  text-align: left;
+  background: #ffffff;
+  border-radius: 10px;
+  padding: clamp(var(--space-sm), 2vw, var(--space-md));
+  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.08);
+}
+
+.project-media {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 140px;
+  background: #ccc;
+  border-radius: 5px;
+}
+
+.project-title {
+  margin: var(--space-sm) 0 var(--space-xs);
+  font-size: var(--text-lg);
+  color: #8b5cf6;
+}
+
+.project-desc {
+  margin: 0 0 var(--space-md);
+  font-size: var(--text-base);
+  line-height: 1.6;
+}
+
+.project-link {
+  text-decoration: none;
+  color: inherit;
+  font-weight: 600;
+}
+
+.project-link:hover {
+  text-decoration: underline;
+}
+
+.project-link:focus-visible {
+  outline: 2px solid #8b5cf6;
+  outline-offset: 2px;
+}
+
+/* section temoignages */
 .testimonials {
   padding-block: var(--space-xl);
   background: #b397c5;
@@ -242,6 +590,159 @@ h2 {
   margin: 0;
   font-weight: 600;
   opacity: 0.9;
+}
+
+.project-card,
+.testimonial-card {
+  transition:
+    transform 150ms ease,
+    box-shadow 150ms ease;
+}
+
+.project-card:hover,
+.testimonial-card:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 12px 28px rgba(0, 0, 0, 0.12);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .card,
+  .project-card,
+  .testimonial-card {
+    transition: none;
+  }
+
+  .card:hover,
+  .project-card:hover,
+  .testimonial-card:hover {
+    transform: none;
+  }
+}
+
+/* exercice accordeon */
+.faq {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: var(--space-lg);
+  padding: var(--space-lg);
+}
+
+.faq-item {
+  width: 100%;
+  max-width: 600px;
+  text-align: center;
+}
+
+.faq-question {
+  cursor: pointer;
+  font-weight: 600;
+  background: none;
+  border: none;
+  text-align: center;
+}
+
+.faq-question:hover {
+  text-decoration: underline;
+}
+
+.faq-answer {
+  display: none;
+  margin-top: var(--space-sm);
+}
+
+.faq-answer.open {
+  display: block;
+}
+
+/* exercice accordion */
+.accordion {
+  max-width: 600px;
+  margin: var(--space-xl) auto;
+}
+
+.accordion-item {
+  border-bottom: 1px solid #ccc;
+}
+
+.accordion-btn {
+  width: 100%;
+  padding: var(--space-md);
+  background: none;
+  border: none;
+  text-align: left;
+  font-size: var(--text-lg);
+  cursor: pointer;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.accordion-btn:focus-visible {
+  outline: 2px solid #0ea5e9;
+  outline-offset: 2px;
+}
+
+.accordion-icon {
+  display: inline-block;
+  width: 1em; /* largeur fixe → important (voir point 2) */
+  text-align: center;
+  font-weight: 700;
+  font-size: 1.2em;
+  transition: opacity 150ms ease;
+}
+
+.accordion-content {
+  max-height: 0;
+  overflow: hidden;
+  transition: max-height 300ms ease;
+}
+
+/* état ouvert */
+.accordion-item.active .accordion-content {
+  max-height: 200px;
+}
+
+/* exercice modal */
+/* Conteneur global */
+.modal {
+  position: fixed;
+  inset: 0;
+  display: none; /* cachée par défaut */
+  z-index: 1000; /* pour régler le problème de la section service qui passait au-dessus */
+}
+
+/* État actif */
+.modal.is-open {
+  display: block;
+}
+
+/* Overlay */
+.modal-overlay {
+  position: absolute;
+  inset: 0;
+  background: rgba(0, 0, 0, 0.6);
+}
+
+/* Contenu */
+.modal-content {
+  position: relative;
+  z-index: 1001; /* pour régler le problème de la section service qui passait au-dessus */
+
+  width: min(90%, 500px);
+  margin: 10vh auto;
+
+  background: #fff;
+  padding: 2rem;
+  border-radius: 0.5rem;
+}
+
+/* Bouton fermer */
+.modal-close {
+  position: absolute;
+  top: 1rem;
+  right: 1rem;
+  cursor: pointer;
 }
 
 /* 4. Contact */
@@ -404,9 +905,23 @@ footer {
     padding: var(--space-sm);
   }
 
+  .menu-toggle {
+    display: block;
+    background: none;
+    border: none;
+    color: white;
+    font-size: 1.2rem;
+    cursor: pointer;
+  }
+
   .nav-list {
-    justify-content: center;
+    display: none;
+    flex-direction: column;
     gap: var(--space-sm);
+  }
+
+  .nav-list.open {
+    display: flex;
   }
 
   /* Hero plus compact sur mobile */
@@ -440,6 +955,10 @@ footer {
   .hero .btn.primary {
     width: 100%;
     justify-content: center;
+  }
+
+  .about-grid {
+    grid-template-columns: 1fr;
   }
 
   /* Cartes : une seule colonne large */

@@ -11,6 +11,9 @@
     <header class="site-header" id="accueil">
       <h1 class="logo">Site de Renaud</h1>
       <nav class="main-nav" aria-label="Navigation principale">
+        <button class="menu-toggle" type="button" aria-expanded="false">
+          ☰ Menu
+        </button>
         <ul class="nav-list">
           <li><a href="#accueil">Accueil</a></li>
           <li><a href="#services">Services</a></li>
@@ -34,20 +37,188 @@
       </div>
     </section>
 
-    <section id="services" class="services" data-anim="stagger">
-      <div class="container">
-        <h2>Nos services</h2>
-        <div class="cards">
-          <article class="card card--dev">💻 Développement logiciel</article>
-          <article class="card card--design">🎨 Design graphique</article>
-          <article class="card card--coach">
-            🤝 Conseil et accompagnement
-          </article>
-          <article class="card card--seo">🌎 Référencement SEO</article>
+    <!-- exercice onglets tabs -->
+    <section class="tabs-demo">
+      <div class="tabs-buttons">
+        <button class="tab-btn active" data-tab="presentation">
+          Présentation
+        </button>
+        <button class="tab-btn" data-tab="projets">Projets</button>
+        <button class="tab-btn" data-tab="collaborations">
+          Collaborations
+        </button>
+      </div>
+
+      <div class="tabs-content">
+        <div class="tab-panel active" id="presentation">
+          <p>Bienvenue dans l’onglet Présentation.</p>
+        </div>
+
+        <div class="tab-panel" id="projets">
+          <p>Voici le contenu de l’onglet Projets.</p>
+        </div>
+
+        <div class="tab-panel" id="collaborations">
+          <p>Voici le contenu de l’onglet Collaborations.</p>
         </div>
       </div>
     </section>
 
+    <!-- exercice filtre de projets -->
+    <section class="projects-filter js-filter-demo">
+      <div class="filter-buttons">
+        <button class="filter-btn active" data-filter="all">Tous</button>
+        <button class="filter-btn" data-filter="web">Web</button>
+        <button class="filter-btn" data-filter="design">Design</button>
+        <button class="filter-btn" data-filter="seo">SEO</button>
+      </div>
+
+      <div class="projects-list">
+        <article class="project-card" data-category="web">Projet A</article>
+        <article class="project-card" data-category="design">Projet B</article>
+        <article class="project-card" data-category="seo">Projet C</article>
+        <article class="project-card" data-category="web">Projet D</article>
+      </div>
+    </section>
+
+    <!-- section a propos -->
+    <section id="about" class="about">
+      <div class="container">
+        <h2>À propos</h2>
+
+        <div class="about-grid">
+          <div class="about-text">
+            <p>
+              Nous créons des sites vitrines modernes, rapides et adaptés au
+              mobile. Notre objectif : une présence en ligne claire, efficace et
+              agréable.
+            </p>
+            <p>
+              Nous privilégions la qualité, la simplicité et des bases solides
+              pour construire des projets durables.
+            </p>
+            <a class="btn primary" href="#contact">Discutons de votre projet</a>
+          </div>
+
+          <div class="about-media" aria-hidden="true">
+            <div class="about-placeholder">Visuel</div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- section nos services -->
+    <section id="services" class="services" data-anim="stagger">
+      <div class="container">
+        <h2>Nos services</h2>
+        <div class="cards">
+          <article class="card card--dev">
+            <div class="card-inner">💻 Développement logiciel</div>
+          </article>
+          <article class="card card--design">
+            <div class="card-inner">🎨 Design graphique</div>
+          </article>
+          <article class="card card--coach">
+            <div class="card-inner">🤝 Conseil et accompagnement</div>
+          </article>
+          <article class="card card--seo">
+            <div class="card-inner">🌎 Référencement SEO</div>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <!-- section boutons tests -->
+    <section id="transition-test" class="transition-test">
+      <div class="container">
+        <h2>Boutons tests</h2>
+        <div class="anim-test">
+          <a class="btn primary btn-ease" href="#contact">ease</a>
+          <a class="btn primary btn-easeout" href="#contact">ease-out</a>
+          <a class="btn primary btn-linear" href="#contact">linear</a>
+        </div>
+        <div class="anim-box">Je bouge</div>
+      </div>
+      <div class="link-demo">
+        <a class="fancy-link fancy-link--scale" href="#contact"
+          >Underline scaleX</a
+        >
+        <a class="fancy-link fancy-link--slide" href="#contact"
+          >Underline slide</a
+        >
+        <a class="fancy-link fancy-link--clip" href="#contact"
+          >Underline clip</a
+        >
+      </div>
+      <button class="toggle-btn" type="button">Activer</button>
+      <div class="toggle-box">Boîte</div>
+    </section>
+
+    <!-- section projets recents -->
+    <section id="projects" class="projects">
+      <div class="container">
+        <h2>Projets récents</h2>
+
+        <div class="projects-grid">
+          <article class="project-card">
+            <div class="project-media" aria-hidden="true">Image</div>
+            <h3 class="project-title">Landing page</h3>
+            <p class="project-desc">
+              Une page d’accueil responsive, optimisée pour convertir.
+            </p>
+            <a class="project-link" href="#">Voir le projet</a>
+          </article>
+
+          <article class="project-card">
+            <div class="project-media" aria-hidden="true">Image</div>
+            <h3 class="project-title">Site vitrine</h3>
+            <p class="project-desc">
+              Un site simple, rapide et accessible pour une activité locale.
+            </p>
+            <a class="project-link" href="#">Voir le projet</a>
+          </article>
+
+          <article class="project-card">
+            <div class="project-media" aria-hidden="true">Image</div>
+            <h3 class="project-title">Portfolio</h3>
+            <p class="project-desc">
+              Présentation claire des compétences et projets, design moderne.
+            </p>
+            <a class="project-link" href="#">Voir le projet</a>
+          </article>
+
+          <article class="project-card">
+            <div class="project-media" aria-hidden="true">Image</div>
+            <h3 class="project-title">Formulaire UX</h3>
+            <p class="project-desc">
+              Formulaire accessible avec validations et feedback utilisateur.
+            </p>
+            <a class="project-link" href="#">Voir le projet</a>
+          </article>
+
+          <article class="project-card">
+            <div class="project-media" aria-hidden="true">Image</div>
+            <h3 class="project-title">Section témoignages</h3>
+            <p class="project-desc">
+              Cartes élégantes, responsive, ombres légères et typographie
+              lisible.
+            </p>
+            <a class="project-link" href="#">Voir le projet</a>
+          </article>
+
+          <article class="project-card">
+            <div class="project-media" aria-hidden="true">Image</div>
+            <h3 class="project-title">À propos (Grid)</h3>
+            <p class="project-desc">
+              Layout 2 colonnes asymétrique, passage en 1 colonne sur mobile.
+            </p>
+            <a class="project-link" href="#">Voir le projet</a>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <!-- section temoignages -->
     <section id="testimonials" class="testimonials">
       <div class="container">
         <h2>Témoignages</h2>
@@ -78,6 +249,118 @@
       </div>
     </section>
 
+    <!-- exercice accordeon -->
+    <section class="faq">
+      <h2>Questions fréquentes</h2>
+
+      <div class="faq-item">
+        <button class="faq-question">Qu’est-ce que ce service ?</button>
+        <div class="faq-answer">
+          <p>C’est un exemple d’accordéon en JavaScript.</p>
+        </div>
+      </div>
+
+      <div class="faq-item">
+        <button class="faq-question">Comment ça fonctionne ?</button>
+        <div class="faq-answer">
+          <p>On clique sur une question pour afficher la réponse.</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- exercice accordion -->
+    <section class="accordion">
+      <div class="accordion-item">
+        <button
+          class="accordion-btn"
+          type="button"
+          aria-expanded="false"
+          aria-controls="accordion-panel-1"
+          id="accordion-btn-1"
+        >
+          <span>Question 1</span>
+          <span class="accordion-icon" aria-hidden="true">+</span>
+        </button>
+        <div
+          class="accordion-content"
+          id="accordion-panel-1"
+          role="region"
+          aria-labelledby="accordion-btn-1"
+        >
+          <p>Réponse 1</p>
+        </div>
+      </div>
+
+      <div class="accordion-item">
+        <button
+          class="accordion-btn"
+          type="button"
+          aria-expanded="false"
+          aria-controls="accordion-panel-2"
+          id="accordion-btn-2"
+        >
+          <span>Question 2</span>
+          <span class="accordion-icon" aria-hidden="true">+</span>
+        </button>
+        <div
+          class="accordion-content"
+          id="accordion-panel-2"
+          role="region"
+          aria-labelledby="accordion-btn-2"
+        >
+          <p>Réponse 2</p>
+        </div>
+      </div>
+
+      <div class="accordion-item">
+        <button
+          class="accordion-btn"
+          type="button"
+          aria-expanded="false"
+          aria-controls="accordion-panel-3"
+          id="accordion-btn-3"
+        >
+          <span>Question 3</span>
+          <span class="accordion-icon" aria-hidden="true">+</span>
+        </button>
+        <div
+          class="accordion-content"
+          id="accordion-panel-3"
+          role="region"
+          aria-labelledby="accordion-btn-3"
+        >
+          <p>Réponse 3</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- exercice modal -->
+    <section class="modal-ex">
+      <!-- Bouton pour ouvrir -->
+      <button class="btn primary" data-modal-open="contact">
+        Ouvrir la modal
+      </button>
+
+      <!-- Modal -->
+      <div class="modal" id="modal-contact" aria-hidden="true">
+        <div class="modal-overlay"></div>
+
+        <div
+          class="modal-content"
+          role="dialog"
+          aria-modal="true"
+          aria-labelledby="modal-title"
+          tabindex="-1"
+        >
+          <button class="modal-close" aria-label="Fermer la modal">✕</button>
+
+          <h2 id="modal-title">Contact</h2>
+          <p>Contenu de la modal...</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- section contact -->
     <section id="contact" class="contact" data-anim="fade">
       <div class="container">
         <h2>Contactez-nous</h2>

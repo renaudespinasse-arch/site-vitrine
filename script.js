@@ -1,6 +1,9 @@
 // === Activation du mode JS ===
 document.body.classList.add("js-enabled");
 
+// Variables globales
+let lastTrigger = null; // utilisé pour exercice modal
+
 // Sélectionne toutes les sections ayant un data-anim
 const animatedSections = document.querySelectorAll("[data-anim]");
 
@@ -128,4 +131,202 @@ document.addEventListener("DOMContentLoaded", () => {
       submitBtn.textContent = originalText;
     }, 600);
   });
+});
+
+// exercice toggle class
+const btn = document.querySelector(".toggle-btn");
+const box = document.querySelector(".toggle-box");
+
+if (btn && box) {
+  btn.addEventListener("click", () => {
+    box.classList.toggle("active");
+  });
+}
+
+// exercice menu mobile
+const toggleBtn = document.querySelector(".menu-toggle");
+const navList = document.querySelector(".nav-list");
+
+if (toggleBtn && navList) {
+  toggleBtn.addEventListener("click", () => {
+    navList.classList.toggle("open");
+
+    const isOpen = navList.classList.contains("open");
+    toggleBtn.setAttribute("aria-expanded", isOpen);
+  });
+}
+
+// menu se ferme quand on clique sur un lien
+const links = document.querySelectorAll(".nav-list a");
+
+links.forEach((link) => {
+  link.addEventListener("click", () => {
+    navList.classList.remove("open");
+  });
+});
+
+// menu se ferme si on clique en dehors du menu
+document.addEventListener("click", (event) => {
+  const clickedInsideMenu = navList.contains(event.target);
+  const clickedButton = toggleBtn.contains(event.target);
+
+  if (!clickedInsideMenu && !clickedButton) {
+    navList.classList.remove("open");
+  }
+});
+
+// faq accordéon
+const questions = document.querySelectorAll(".faq-question");
+const answers = document.querySelectorAll(".faq-answer");
+
+questions.forEach((question) => {
+  question.addEventListener("click", () => {
+    const answer = question.nextElementSibling;
+    const isOpen = answer.classList.contains("open");
+
+    answers.forEach((answer) => {
+      answer.classList.remove("open");
+    });
+
+    if (!isOpen) {
+      answer.classList.add("open");
+    }
+  });
+});
+
+// onglets tabs
+const tabButtons = document.querySelectorAll(".tab-btn");
+const tabPanels = document.querySelectorAll(".tab-panel");
+
+tabButtons.forEach((btn) => {
+  // bouton clique
+  btn.addEventListener("click", () => {
+    const targetId = btn.dataset.tab;
+    const targetPanel = document.querySelector(`#${targetId}`);
+
+    tabButtons.forEach((b) => {
+      // tous les boutons
+      b.classList.remove("active");
+    });
+
+    tabPanels.forEach((panel) => {
+      panel.classList.remove("active");
+    });
+
+    btn.classList.add("active");
+
+    if (targetPanel) {
+      targetPanel.classList.add("active");
+    }
+  });
+});
+
+// filtre de projets
+const filterDemo = document.querySelector(".js-filter-demo");
+
+if (filterDemo) {
+  const filterButtons = filterDemo.querySelectorAll(".filter-btn");
+  const projects = filterDemo.querySelectorAll(".project-card");
+
+  filterButtons.forEach((button) => {
+    button.addEventListener("click", () => {
+      const filterValue = button.dataset.filter;
+
+      filterButtons.forEach((btn) => btn.classList.remove("active"));
+      button.classList.add("active");
+
+      projects.forEach((project) => {
+        const category = project.dataset.category;
+
+        if (filterValue === "all" || category === filterValue) {
+          project.classList.remove("hidden");
+          project.classList.remove("is-hidden");
+        } else {
+          project.classList.add("hidden");
+          setTimeout(() => {
+            project.classList.add("is-hidden");
+          }, 250);
+        }
+      });
+    });
+  });
+}
+
+// exercice accordion
+document.addEventListener("DOMContentLoaded", () => {
+  const items = document.querySelectorAll(".accordion-item");
+
+  items.forEach((item) => {
+    const btn = item.querySelector(".accordion-btn");
+    const icon = item.querySelector(".accordion-icon");
+
+    btn.addEventListener("click", () => {
+      const isOpen = item.classList.contains("active");
+
+      items.forEach((el) => {
+        el.classList.remove("active");
+
+        const elIcon = el.querySelector(".accordion-icon");
+        if (elIcon) {
+          elIcon.textContent = "+";
+        }
+      });
+
+      if (!isOpen) {
+        item.classList.add("active");
+        if (icon) {
+          icon.textContent = "-";
+        }
+      }
+    });
+  });
+});
+
+// exercice modal
+// Sélection des éléments
+const openButtons = document.querySelectorAll("[data-modal-open]");
+const modals = document.querySelectorAll(".modal");
+
+// OUVRIR
+openButtons.forEach((button) => {
+  button.addEventListener("click", () => {
+    lastTrigger = button;
+
+    const id = button.dataset.modalOpen;
+    const targetModal = document.querySelector(`#modal-${id}`);
+
+    targetModal.classList.add("is-open");
+    targetModal.setAttribute("aria-hidden", "false");
+
+    const content = targetModal.querySelector(".modal-content");
+    content.focus();
+  });
+});
+
+// FERMER (bouton + overlay)
+modals.forEach((currentModal) => {
+  const closeBtn = currentModal.querySelector(".modal-close");
+  const overlay = currentModal.querySelector(".modal-overlay");
+
+  overlay.addEventListener("click", () => closeModal(currentModal));
+  closeBtn.addEventListener("click", () => closeModal(currentModal));
+});
+
+function closeModal(modal) {
+  modal.classList.remove("is-open");
+  modal.setAttribute("aria-hidden", "true");
+
+  if (lastTrigger) {
+    lastTrigger.focus();
+  }
+}
+
+document.addEventListener("keydown", (e) => {
+  if (e.key === "Escape") {
+    const openModal = document.querySelector(".modal.is-open");
+
+    if (openModal) {
+      closeModal(openModal);
+    }
+  }
 });
