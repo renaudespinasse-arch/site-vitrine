@@ -284,33 +284,24 @@ document.addEventListener("DOMContentLoaded", () => {
 
 // exercice modal
 // Sélection des éléments
-const openButtons = document.querySelectorAll("[data-modal-open]");
+const openButtons = document.querySelectorAll("[data-modal-target]");
 const modals = document.querySelectorAll(".modal");
 
-// OUVRIR
-openButtons.forEach((button) => {
-  button.addEventListener("click", () => {
-    lastTrigger = button;
+function getFocusableElements(modal) {
+  return modal.querySelectorAll(
+    'button, [href], input, select, textarea, [tabindex]:not([tabindex="-1"])',
+  );
+}
 
-    const id = button.dataset.modalOpen;
-    const targetModal = document.querySelector(`#modal-${id}`);
+function openModal(modal, trigger) {
+  lastTrigger = trigger;
 
-    targetModal.classList.add("is-open");
-    targetModal.setAttribute("aria-hidden", "false");
+  modal.classList.add("is-open");
+  modal.setAttribute("aria-hidden", "false");
 
-    const content = targetModal.querySelector(".modal-content");
-    content.focus();
-  });
-});
-
-// FERMER (bouton + overlay)
-modals.forEach((currentModal) => {
-  const closeBtn = currentModal.querySelector(".modal-close");
-  const overlay = currentModal.querySelector(".modal-overlay");
-
-  overlay.addEventListener("click", () => closeModal(currentModal));
-  closeBtn.addEventListener("click", () => closeModal(currentModal));
-});
+  const content = modal.querySelector(".modal-content");
+  content.focus();
+}
 
 function closeModal(modal) {
   modal.classList.remove("is-open");
@@ -321,12 +312,54 @@ function closeModal(modal) {
   }
 }
 
-document.addEventListener("keydown", (e) => {
-  if (e.key === "Escape") {
-    const openModal = document.querySelector(".modal.is-open");
+openButtons.forEach((button) => {
+  button.addEventListener("click", () => {
+    const selector = button.dataset.modalTarget;
+    const targetModal = document.querySelector(selector);
 
-    if (openModal) {
-      closeModal(openModal);
+    if (!targetModal) return;
+
+    openModal(targetModal, button);
+  });
+});
+
+modals.forEach((currentModal) => {
+  const closeBtn = currentModal.querySelector(".modal-close");
+  const overlay = currentModal.querySelector(".modal-overlay");
+
+  closeBtn.addEventListener("click", () => {
+    closeModal(currentModal);
+  });
+
+  overlay.addEventListener("click", () => {
+    closeModal(currentModal);
+  });
+});
+
+document.addEventListener("keydown", (e) => {
+  const openModalElement = document.querySelector(".modal.is-open");
+
+  if (!openModalElement) return;
+
+  if (e.key === "Escape") {
+    closeModal(openModalElement);
+    return;
+  }
+
+  if (e.key === "Tab") {
+    const focusableElements = getFocusableElements(openModalElement);
+
+    if (focusableElements.length === 0) return;
+
+    const firstElement = focusableElements[0];
+    const lastElement = focusableElements[focusableElements.length - 1];
+
+    if (e.shiftKey && document.activeElement === firstElement) {
+      e.preventDefault();
+      lastElement.focus();
+    } else if (!e.shiftKey && document.activeElement === lastElement) {
+      e.preventDefault();
+      firstElement.focus();
     }
   }
 });

@@ -727,7 +727,7 @@ h2 {
 /* Contenu */
 .modal-content {
   position: relative;
-  z-index: 1001; /* pour régler le problème de la section service qui passait au-dessus */
+  z-index: 1; /* pour régler le problème de la section service qui passait au-dessus */
 
   width: min(90%, 500px);
   margin: 10vh auto;
